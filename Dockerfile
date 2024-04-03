@@ -5,7 +5,7 @@ RUN mkdir /app
 COPY . /app
 
 WORKDIR /app
-RUN npm ci --omit dev
+RUN npm ci
 RUN npm run build
 
 
@@ -18,6 +18,6 @@ COPY --from=builder /app/build /app/build
 COPY --from=builder /app/package.json /app/package-lock.json /app/
 
 WORKDIR /app
-RUN npm ci --omit dev 
+RUN npm ci
 
 CMD ["node", "build/index.js"]
